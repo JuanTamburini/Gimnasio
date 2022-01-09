@@ -1,0 +1,19 @@
+<div class="container">
+    <h3>Bienvenido, por favor ingrese sus datos</h3>
+    <form [formGroup]="formularioDeLogin">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email </label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Ingrese su email">
+        </div>
+        <div class="mb-3">
+          <label for="contraseña" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contraseña" formControlName="contraseña" placeholder="Ingrese su contraseña">
+        </div>
+        <div *ngIf="!datosIngresados" class="alert alert-warning" role="alert">
+            {{textoError}}
+        </div>
+        
+        <button type="submit" (click)="ingresar()" class="btn btn-primary" [disabled]="!formularioDeLogin.valid">Ingresar</button>
+        
+    </form>
+</div>
