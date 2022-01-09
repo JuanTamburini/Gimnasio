@@ -9,11 +9,13 @@ import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { EncabezadoComponent } from './encabezado/encabezado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    EncabezadoComponent
   ],
   imports: [
     BrowserModule,

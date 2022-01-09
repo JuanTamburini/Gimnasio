@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     
     if(this.formularioDeLogin.valid){
       this.spinner.show();
-      setTimeout(()=>{
+
         this.auth.signInWithEmailAndPassword(this.formularioDeLogin.value.email, this.formularioDeLogin.value.contraseña)
         .then((usuario)=>{ 
           this.spinner.hide();
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           console.log(error)
           this.datosIngresados = false;
           this.textoError = error.message;
-      })},3000);
+      })
       
     }
     else {
