@@ -16,4 +16,7 @@
         <button type="submit" (click)="ingresar()" class="btn btn-primary" [disabled]="!formularioDeLogin.valid">Ingresar</button>
         
     </form>
+    
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" background-color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+    
 </div>

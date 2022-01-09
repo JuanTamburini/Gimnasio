@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   datosIngresados: boolean = true;
   textoError: string = '';
 
-  constructor(public creadorDeFormulario: FormBuilder, private auth: AngularFireAuth) {
+  constructor(public creadorDeFormulario: FormBuilder, private auth: AngularFireAuth, private spinner: NgxSpinnerService) {
     this.formularioDeLogin = this.creadorDeFormulario.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       contraseña: ['', Validators.required]
@@ -25,15 +26,21 @@ export class LoginComponent implements OnInit {
 }
 
   ingresar(){
+    
     if(this.formularioDeLogin.valid){
-      this.auth.signInWithEmailAndPassword(this.formularioDeLogin.value.email, this.formularioDeLogin.value.contraseña)
-    .then((usuario)=>{
-      console.log(usuario)
-    }).catch((error)=> {
-      console.log(error)
-      this.datosIngresados = false;
-      this.textoError = error.message
-    })
+      this.spinner.show();
+      setTimeout(()=>{
+        this.auth.signInWithEmailAndPassword(this.formularioDeLogin.value.email, this.formularioDeLogin.value.contraseña)
+        .then((usuario)=>{ 
+          this.spinner.hide();
+          console.log(usuario);
+        }).catch((error)=> {
+          this.spinner.hide();
+          console.log(error)
+          this.datosIngresados = false;
+          this.textoError = error.message;
+      })},3000);
+      
     }
     else {
       this.datosIngresados = false
